@@ -4,8 +4,8 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - python=3.8
-  - pytorch=1.13.1
+  - python
+  - pytorch
   - torchvision
   - numpy
   - scikit-learn
@@ -13,7 +13,7 @@ dependencies:
 
   - bokeh
   - ipykernel
-  - pytz=2022.2.1
+  - pytz
   - jsondiff
   - pip
   - pip:
