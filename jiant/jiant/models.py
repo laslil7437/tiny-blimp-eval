@@ -246,14 +246,14 @@ def build_model(args, vocab, pretrained_embs, tasks):
         d_emb = embedder.get_output_dim()
         
     elif args.input_module.startswith("tiny"):
-    	from transformers import AutoModelForCausalLM, AutoTokenizer
-	tokenizer = AutoTokenizer.from_pretrained("gpt2")		
-	model = AutoModelForCausalLM.from_pretrained("rock-z/tiny_gpt2_tiny_stories", subfolder="checkpoint-500")
-	
-	log.info(f"Using custom GPT-2 TinyStories model  ({args.input_module}).")
-	
-	from jiant.pytorch_transformers_interface.modules import GPT2EmbedderModule
-	embedder = GPT2EmbedderModule(args)
+        from transformers import AutoModelForCausalLM, AutoTokenizer
+        tokenizer = AutoTokenizer.from_pretrained("gpt2")
+        model = AutoModelForCausalLM.from_pretrained("rock-z/tiny_gpt2_tiny_stories", subfolder="checkpoint-500")
+        
+        log.info(f"Using custom GPT-2 TinyStories model  ({args.input_module}).")
+        
+        from jiant.pytorch_transformers_interface.modules import GPT2EmbedderModule
+        embedder = GPT2EmbedderModule(args)
         d_emb = embedder.get_output_dim()
 	
     else:
