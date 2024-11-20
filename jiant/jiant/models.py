@@ -238,48 +238,24 @@ def build_model(args, vocab, pretrained_embs, tasks):
 
     # Build embeddings.
     cove_layer = None
-    if args.input_module.startswith("bert-"):
-        from jiant.pytorch_transformers_interface.modules import BertEmbedderModule
-
-        log.info(f"Using BERT model ({args.input_module}).")
-        embedder = BertEmbedderModule(args)
-        d_emb = embedder.get_output_dim()
-    elif args.input_module.startswith("roberta-"):
-        from jiant.pytorch_transformers_interface.modules import RobertaEmbedderModule
-
-        log.info(f"Using RoBERTa model ({args.input_module}).")
-        embedder = RobertaEmbedderModule(args)
-        d_emb = embedder.get_output_dim()
-    elif args.input_module.startswith("xlnet-"):
-        from jiant.pytorch_transformers_interface.modules import XLNetEmbedderModule
-
-        log.info(f"Using XLNet model ({args.input_module}).")
-        embedder = XLNetEmbedderModule(args)
-        d_emb = embedder.get_output_dim()
-    elif args.input_module.startswith("openai-gpt"):
-        from jiant.pytorch_transformers_interface.modules import OpenAIGPTEmbedderModule
-
-        log.info(f"Using OpenAI GPT model ({args.input_module}).")
-        embedder = OpenAIGPTEmbedderModule(args)
-        d_emb = embedder.get_output_dim()
-    elif args.input_module.startswith("gpt2"):
+    if args.input_module.startswith("gpt2"):
         from jiant.pytorch_transformers_interface.modules import GPT2EmbedderModule
 
         log.info(f"Using GPT-2 model ({args.input_module}).")
         embedder = GPT2EmbedderModule(args)
         d_emb = embedder.get_output_dim()
-    elif args.input_module.startswith("transfo-xl-"):
-        from jiant.pytorch_transformers_interface.modules import TransfoXLEmbedderModule
-
-        log.info(f"Using Transformer-XL model ({args.input_module}).")
-        embedder = TransfoXLEmbedderModule(args)
+        
+    elif args.input_module.startswith("tiny"):
+    	from transformers import AutoModelForCausalLM, AutoTokenizer
+	tokenizer = AutoTokenizer.from_pretrained("gpt2")		
+	model = AutoModelForCausalLM.from_pretrained("rock-z/tiny_gpt2_tiny_stories", subfolder="checkpoint-500")
+	
+	log.info(f"Using custom GPT-2 TinyStories model  ({args.input_module}).")
+	
+	from jiant.pytorch_transformers_interface.modules import GPT2EmbedderModule
+	embedder = GPT2EmbedderModule(args)
         d_emb = embedder.get_output_dim()
-    elif args.input_module.startswith("xlm-"):
-        from jiant.pytorch_transformers_interface.modules import XLMEmbedderModule
-
-        log.info(f"Using XLM model ({args.input_module}).")
-        embedder = XLMEmbedderModule(args)
-        d_emb = embedder.get_output_dim()
+	
     else:
         # Default case, used for ELMo, CoVe, word embeddings, etc.
         d_emb, embedder, cove_layer = build_embeddings(args, vocab, tasks, pretrained_embs)
