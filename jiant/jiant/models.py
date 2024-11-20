@@ -248,7 +248,7 @@ def build_model(args, vocab, pretrained_embs, tasks):
     elif args.input_module.startswith("tiny"):
         from transformers import AutoModelForCausalLM, AutoTokenizer
         tokenizer = AutoTokenizer.from_pretrained("gpt2")
-        model = AutoModelForCausalLM.from_pretrained("rock-z/tiny_gpt2_tiny_stories/tree/main/checkpoint-500", subfolder="checkpoint-500", safe_model=True)
+        model = AutoModelForCausalLM.from_pretrained("rock-z/tiny_gpt2_tiny_stories/checkpoint-500", safe_model=True)
         
         log.info(f"Using custom GPT-2 TinyStories model  ({args.input_module}).")
         
