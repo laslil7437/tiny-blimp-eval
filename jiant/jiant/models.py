@@ -249,7 +249,7 @@ def build_model(args, vocab, pretrained_embs, tasks):
         from transformers import AutoModelForCausalLM, AutoTokenizer
         tokenizer = AutoTokenizer.from_pretrained("gpt2")
 	
-        model = AutoModelForCausalLM.from_pretrained("rock-z/tiny_gpt2_tiny_stories/checkpoint-500")
+        model = AutoModelForCausalLM.from_pretrained("./tiny_gpt2_tiny_stories/checkpoint-500")
         
         log.info(f"Using custom GPT-2 TinyStories model  ({args.input_module}).")
         
