@@ -17,7 +17,6 @@ dependencies:
   - jsondiff
   - pip
   - pip:
-      - allennlp 
       - ipdb
       - tensorboard
       - tensorboardX
