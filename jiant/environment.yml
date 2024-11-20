@@ -3,7 +3,7 @@ channels:
     - pytorch
 dependencies:
     - python=3.6
-    - pytorc
+    - pytorch
     - torchvision
     - numpy=1.14.5
     - scikit-learn
