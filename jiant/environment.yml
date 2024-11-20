@@ -1,46 +1,34 @@
 name: jiant
 channels:
-    - pytorch
+  - pytorch
+  - conda-forge
+  - defaults
 dependencies:
-    - python=3.6
-    - pytorch=1.1.0
-    - torchvision
-    - numpy=1.14.5
-    - scikit-learn
-    - pandas
-    # bokeh for plotting
-    - bokeh=1.2.0
-    - ipykernel=5.1.1
-    - pytz=2017.3
-    - jsondiff
-    - pip
-    - pip:
-        - allennlp==0.8.4
-        - ipdb
-        - tensorboard
-        - tensorboardX==1.2
-        - sendgrid==5.4.1
-        - pyhocon==0.3.35
-        - nose2
-        - pre-commit==1.15.2
-
-        # for span alignment / retokenization
-        - python-Levenshtein==0.12.0
-
-        # for --remote_log functionality
-        - google-cloud-logging==1.11.0
-
-        # for some tokenizers in pytorch-transformers
-        - spacy==2.1
-
-        # for tokenization
-        - nltk==3.4.5
-        - sacremoses
-
-        # Warning: jiant currently depends on *both* pytorch_pretrained_bert > 0.6 _and_
-        # pytorch_transformers > 1.0. These are the same package, though the name changed between
-        # these two versions. AllenNLP requires 0.6 to support the BertAdam optimizer, and jiant
-        # directly requires 1.0 to support XLNet and WWM-BERT.
-        # This AllenNLP issue is relevant: https://github.com/allenai/allennlp/issues/3067
-        - sacremoses
-        - pytorch-transformers==1.1.0
+  - python=3.8
+  - pytorch=1.13.1
+  - torchvision=0.14.0
+  - numpy=1.23.0
+  - scikit-learn=1.1.0
+  - pandas=1.5.0
+  # Updated version of Bokeh
+  - bokeh=2.4.2
+  - ipykernel=6.12.0
+  - pytz=2022.2.1
+  - jsondiff
+  - pip
+  - pip:
+      - allennlp==2.10.0  # Update AllenNLP to a newer version
+      - ipdb
+      - tensorboard
+      - tensorboardX==2.6
+      - sendgrid==6.0.0  # Update SendGrid
+      - pyhocon==0.3.56
+      - nose2
+      - pre-commit==2.20.0  # Latest pre-commit version
+      - python-Levenshtein==0.12.2
+      - google-cloud-logging==3.0.2
+      - spacy==3.3.0
+      - nltk==3.7
+      - sacremoses
+      # Hugging Face Transformers (replaces pytorch_pretrained_bert and pytorch_transformers)
+      - transformers==4.25.0  # Latest stable version
